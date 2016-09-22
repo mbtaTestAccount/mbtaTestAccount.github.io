@@ -7,15 +7,16 @@ trainTimes.ProcessTrainData = function() {
   	var reader = new FileReader();
   	reader.onload = function(event) {
   		var data = event.target.result.split('\r\n');
-  		var date = new Date(0);
 
   		//-2 because the last line appears to be empty
   		for(i = 1; i <= data.length-2; i++){
   			var dataPoints = data[i].split(',');
-  			var localdate = date.setUTCSeconds(dataPoints[4]);
+  			var date = new Date(0);
+  			date.setUTCSeconds(dataPoints[4]);
+  			date.setSeconds(date.getSeconds() + dataPoints[5]);
   			times.push({
   				TrainName : dataPoints[3],
-  				// DepartureTime :  localdate.setSeconds(localdate.getSeconds() + dataPoints[5])
+  				DepartureTime :  date
   			});
   		};
   		console.log(times);
