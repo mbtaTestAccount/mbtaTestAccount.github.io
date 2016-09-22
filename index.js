@@ -37,17 +37,28 @@ trainTimes.DisplayTimes = function(times){
 	{
 		var listItem = document.createElement("LI");
 
-		var nameDiv = document.createElement("DIV");
-		var nameText = document.createTextNode(times[i].TrainName);
-		nameDiv.style.color = "Red";
-		nameDiv.appendChild(nameText);
-
-		var timeDiv = document.createElement("DIV");
-		var timeText = document.createTextNode(times[i].DepartureTime);
-		timeDiv.appendChild(timeText);
+		var nameDiv = trainTimes.CreateTrainNameDiv(times[i].TrainName);
+		var timeDiv = trainTimes.CreateTrainTimeDiv(times[i].DepartureTime);
 		
 		listItem.appendChild(nameDiv);
 		listItem.appendChild(timeDiv);
 		displayBody.appendChild(listItem);
 	}
 };
+
+trainTimes.CreateTrainNameDiv = function(trainName){
+		var nameDiv = document.createElement("DIV");
+		var nameText = document.createTextNode(trainName);
+		nameDiv.style.color = "Red";
+		nameDiv.appendChild(nameText);
+		
+		return nameDiv;
+}
+
+trainTimes.CreateTrainTimeDiv = function(trainTime){
+		var timeDiv = document.createElement("DIV");
+		var timeText = document.createTextNode(trainTime);
+		timeDiv.appendChild(timeText);
+
+		return timeDiv;
+}
