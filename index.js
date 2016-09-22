@@ -11,9 +11,7 @@ trainTimes.ProcessTrainData = function() {
   		//-2 because the last line appears to be empty
   		for(i = 1; i <= data.length-2; i++){
   			var dataPoints = data[i].split(',');
-  			var date = new Date(0);
-  			date.setUTCSeconds(dataPoints[4]);
-  			date.setSeconds(date.getSeconds() + dataPoints[5]);
+			var date = trainTimes.ConvertTrainTime(dataPoints[4],dataPoints[5]);
   			times.push({
   				TrainName : dataPoints[3],
   				DepartureTime :  date
@@ -23,4 +21,11 @@ trainTimes.ProcessTrainData = function() {
   	};
 
   reader.readAsText(file);
+};
+
+trainTimes.ConvertTrainTime = function(scheduledTime, lateness){
+  			var date = new Date(0);
+  			date.setUTCSeconds(scheduledTime);
+  			date.setSeconds(date.getSeconds() + lateness);
+  			return date;
 };
