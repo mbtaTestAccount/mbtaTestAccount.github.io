@@ -35,14 +35,19 @@ trainTimes.DisplayTimes = function(times){
 
 	for(var i=0; i <= times.length-1; i++)
 	{
+		var listItem = document.createElement("LI");
+
 		var nameDiv = document.createElement("DIV");
 		var nameText = document.createTextNode(times[i].TrainName);
+		nameDiv.style.color = "Red";
 		nameDiv.appendChild(nameText);
-		displayBody.appendChild(nameDiv);
 
 		var timeDiv = document.createElement("DIV");
 		var timeText = document.createTextNode(times[i].DepartureTime);
 		timeDiv.appendChild(timeText);
-		displayBody.appendChild(timeDiv	);
+		
+		listItem.appendChild(nameDiv);
+		listItem.appendChild(timeDiv);
+		displayBody.appendChild(listItem);
 	}
 };
