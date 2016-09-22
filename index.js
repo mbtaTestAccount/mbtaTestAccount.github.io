@@ -17,7 +17,7 @@ trainTimes.ProcessTrainData = function() {
   				DepartureTime :  date
   			});
   		};
-  		console.log(times);
+  		trainTimes.DisplayTimes(times);
   	};
 
   reader.readAsText(file);
@@ -28,4 +28,21 @@ trainTimes.ConvertTrainTime = function(scheduledTime, lateness){
   			date.setUTCSeconds(scheduledTime);
   			date.setSeconds(date.getSeconds() + lateness);
   			return date;
+};
+
+trainTimes.DisplayTimes = function(times){
+	var displayBody = document.getElementById('times');
+
+	for(var i=0; i <= times.length-1; i++)
+	{
+		var nameDiv = document.createElement("DIV");
+		var nameText = document.createTextNode(times[i].TrainName);
+		nameDiv.appendChild(nameText);
+		displayBody.appendChild(nameDiv);
+
+		var timeDiv = document.createElement("DIV");
+		var timeText = document.createTextNode(times[i].DepartureTime);
+		timeDiv.appendChild(timeText);
+		displayBody.appendChild(timeDiv	);
+	}
 };
